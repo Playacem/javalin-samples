@@ -19,10 +19,14 @@ public class JavalinHttp2ExampleApp {
 
             config.staticFiles.add("/public", Location.CLASSPATH);
 
-            config.router.mount(router -> {
-                router.get("/", ctx -> ctx.result("Hello World"));
-            });
+            config.routes.get("/", ctx -> ctx.result("Hello World"));
         }).start();
+
+        System.out.println("Server started with HTTP/2 support!");
+        System.out.println("  HTTP/1.1: http://localhost:8080/static-files-test.html");
+        System.out.println("  HTTP/2:   https://localhost:8443/static-files-test.html");
+        System.out.println("Compare the network tab in your browser to see HTTP/2 in action");
+        System.out.println("Notice the order of execution/number of simultaneous requests");
 
     }
 

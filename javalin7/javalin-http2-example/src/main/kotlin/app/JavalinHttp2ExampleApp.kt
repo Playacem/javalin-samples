@@ -15,10 +15,14 @@ fun main() {
         })
         javalinConfig.staticFiles.add("/public", Location.CLASSPATH)
 
-        javalinConfig.router.mount { router ->
-            router.get("/") { it.result("Hello World") }
-        }
+        javalinConfig.routes.get("/") { it.result("Hello World") }
     }.start()
+
+    println("Server started with HTTP/2 support!")
+    println("  HTTP/1.1: http://localhost:8080/static-files-test.html")
+    println("  HTTP/2:   https://localhost:8443/static-files-test.html")
+    println("Compare the network tab in your browser to see HTTP/2 in action")
+    println("Notice the order of execution/number of simultaneous requests")
 
 }
 

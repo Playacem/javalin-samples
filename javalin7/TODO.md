@@ -7,6 +7,7 @@
 - javalin-email-example
 - javalin-heroku-example
 - javalin-html-forms-example
+- javalin-http2-example
 - javalin-jetty-sessions-example
 - javalin-kotlin-example
 - javalin-modern-java-example
@@ -18,9 +19,6 @@
 - javalinstagram
 - javalinvue-example/javalinvue2-example
 - javalinvue-example/javalinvue3-example
-
-## Modules Staying on Javalin 6 (Not Migrating)
-- javalin-http2-example (keeping on Javalin 6 for now)
 
 ## Modules Needing Migration
 
