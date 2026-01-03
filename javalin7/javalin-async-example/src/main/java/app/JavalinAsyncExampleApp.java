@@ -1,8 +1,8 @@
 package app;
 
 import io.javalin.Javalin;
-import io.javalin.http.staticfiles.Location;
 import io.javalin.community.ssl.SslPlugin;
+import io.javalin.http.staticfiles.Location;
 
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executors;
@@ -22,23 +22,16 @@ public class JavalinAsyncExampleApp {
             // Set up the SSL plugin (Enables HTTP/2 by default)
             config.registerPlugin(new SslPlugin(ssl -> ssl.keystoreFromClasspath("keystore.jks", "password")));
             config.staticFiles.add("/public", Location.CLASSPATH);
-
-            config.router.mount(router -> {
-                router.get("/async", ctx -> {
-                    long taskTime = ctx.queryParamAsClass("task-time", Long.class).get();
-                    ctx.future(() -> getFuture(taskTime));
-                });
-
-                router.get("/blocking", ctx -> {
-                    long taskTime = ctx.queryParamAsClass("task-time", Long.class).get();
-                    Thread.sleep(taskTime);
-                    ctx.result("done");
-                });
+            config.routes.get("/async", ctx -> {
+                long taskTime = ctx.queryParamAsClass("task-time", Long.class).get();
+                ctx.future(() -> getFuture(taskTime));
             });
-
-            config.router.mount(router -> {
-                router.exception(Exception.class, (exception, ctx) -> System.out.println(exception.getMessage()));
+            config.routes.get("/blocking", ctx -> {
+                long taskTime = ctx.queryParamAsClass("task-time", Long.class).get();
+                Thread.sleep(taskTime);
+                ctx.result("done");
             });
+            config.routes.exception(Exception.class, (exception, ctx) -> System.out.println(exception.getMessage()));
         }).start();
 
     }

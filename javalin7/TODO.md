@@ -2,6 +2,7 @@
 
 ## Completed Modules ✅
 - javalin-auth-example
+- javalin-async-example
 - javalin-cors-example
 - javalin-email-example
 - javalin-heroku-example
@@ -19,8 +20,7 @@
 - javalinvue-example/javalinvue3-example
 
 ## Modules Staying on Javalin 6 (Not Migrating)
-- javalin-async-example (fixed SSL plugin import, moved routes to config)
-- javalin-http2-example (fixed SSL plugin import, moved routes to config)
+- javalin-http2-example (keeping on Javalin 6 for now)
 
 ## Modules Needing Migration
 
